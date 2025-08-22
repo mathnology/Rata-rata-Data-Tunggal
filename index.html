@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembelajaran Rata-rata Data Tunggal - Mathnology</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.6s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .slide-in {
+            animation: slideIn 0.5s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+        
+        .bounce-in {
+            animation: bounceIn 0.8s ease-out;
+        }
+        
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .card-shadow {
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .interactive-card {
+            transition: all 0.3s ease;
+        }
+        
+        .interactive-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        
+        .progress-bar {
+            transition: width 0.5s ease-in-out;
+        }
+        
+        .mathnology-img {
+            max-width: 200px;
+            height: auto;
+            object-fit: contain;
+        }
+        
+        @media (max-width: 640px) {
+            .mathnology-img {
+                max-width: 150px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="gradient-bg text-white py-6 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="text-center md:text-left mb-4 md:mb-0">
+                    <h1 class="text-2xl md:text-3xl font-bold">Pembelajaran Rata-rata Data Tunggal</h1>
+                    <p class="text-blue-100 mt-2">Membangun Pemahaman Melalui Penemuan Terbimbing</p>
+                </div>
+                <img src="https://raw.githubusercontent.com/mathnology/Penelitian-Relevan/refs/heads/main/gif%20mathnology.gif" 
+                     alt="Mathnology Logo" 
+                     class="mathnology-img rounded-lg"
+                     onerror="this.style.display='none';">
+            </div>
+        </div>
+    </header>
+
+    <!-- Progress Bar -->
+    <div class="bg-white shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 py-3">
+            <div class="flex items-center justify-between text-sm text-gray-600 mb-2">
+                <span>Progress Pembelajaran</span>
+                <span id="progressText">0%</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+                <div id="progressBar" class="progress-bar bg-blue-600 h-2 rounded-full" style="width: 0%"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-4 py-8">
+        <!-- Section 1: Apersepsi -->
+        <section id="section1" class="mb-12 fade-in">
+            <div class="bg-white rounded-xl card-shadow p-6 md:p-8">
+                <div class="flex items-center mb-6">
+                    <div class="bg-blue-100 p-3 rounded-full mr-4">
+                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800">Mari Kita Mulai dengan Situasi Nyata!</h2>
+                </div>
+                
+                <div class="bg-gradient-to-r from-yellow-50 to-orange-50 p-6 rounded-lg mb-6">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">🏀 Situasi: Tim Basket Sekolah</h3>
+                    <p class="text-gray-700 mb-4">
+                        Andi adalah pelatih tim basket sekolah. Dia ingin mengetahui rata-rata tinggi badan pemainnya untuk menentukan strategi permainan. 
+                        Berikut data tinggi badan 5 pemain utama (dalam cm):
+                    </p>
+                    <div class="grid grid-cols-5 gap-4 mb-4">
+                        <div class="bg-white p-3 rounded-lg text-center shadow-sm">
+                            <div class="text-2xl mb-2">🏃‍♂️</div>
+                            <div class="font-semibold">Budi</div>
+                            <div class="text-blue-600 font-bold">170 cm</div>
+                        </div>
+                        <div class="bg-white p-3 rounded-lg text-center shadow-sm">
+                            <div class="text-2xl mb-2">🏃‍♂️</div>
+                            <div class="font-semibold">Citra</div>
+                            <div class="text-blue-600 font-bold">165 cm</div>
+                        </div>
+                        <div class="bg-white p-3 rounded-lg text-center shadow-sm">
+                            <div class="text-2xl mb-2">🏃‍♂️</div>
+                            <div class="font-semibold">Dani</div>
+                            <div class="text-blue-600 font-bold">175 cm</div>
+                        </div>
+                        <div class="bg-white p-3 rounded-lg text-center shadow-sm">
+                            <div class="text-2xl mb-2">🏃‍♂️</div>
+                            <div class="font-semibold">Eka</div>
+                            <div class="text-blue-600 font-bold">168 cm</div>
+                        </div>
+                        <div class="bg-white p-3 rounded-lg text-center shadow-sm">
+                            <div class="text-2xl mb-2">🏃‍♂️</div>
+                            <div class="font-semibold">Fani</div>
+                            <div class="text-blue-600 font-bold">172 cm</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-blue-50 p-6 rounded-lg">
+                    <h4 class="font-semibold text-gray-800 mb-3">🤔 Pertanyaan Pemicu:</h4>
+                    <ul class="space-y-2 text-gray-700">
+                        <li>• Bagaimana cara Andi menentukan tinggi badan "rata-rata" timnya?</li>
+                        <li>• Apakah ada cara yang adil untuk merepresentasikan tinggi badan seluruh tim?</li>
+                        <li>• Mengapa informasi rata-rata penting untuk pelatih?</li>
+                    </ul>
+                </div>
+                
+                <div class="mt-6 text-center">
+                    <button onclick="nextSection(2)" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
+                        Mari Temukan Jawabannya! →
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Eksplorasi Terbimbing -->
+        <section id="section2" class="mb-12 hidden">
+            <div class="bg-white rounded-xl card-shadow p-6 md:p-8">
+                <div class="flex items-center mb-6">
+                    <div class="bg-green-100 p-3 rounded-full mr-4">
+                        <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800">Eksplorasi: Menemukan Pola</h2>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4">🔍 Aktivitas 1: Coba Berbagai Cara</h3>
+                        <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                            <p class="text-sm text-gray-600 mb-3">Data: 170, 165, 175, 168, 172</p>
+                            
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Cara 1: Jumlahkan semua data</label>
+                                    <input type="number" id="sum1" placeholder="170 + 165 + 175 + 168 + 172 = ?" 
+                                           class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500">
+                                    <button onclick="checkSum()" class="mt-2 bg-blue-500 text-white px-4 py-2 rounded text-sm hover:bg-blue-600">
+                                        Periksa
+                                    </button>
+                                    <div id="sumResult" class="mt-2 text-sm"></div>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Cara 2: Bagi dengan banyak data</label>
+                                    <input type="number" id="average1" placeholder="Hasil pembagian dengan 5" 
+                                           class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500">
+                                    <button onclick="checkAverage()" class="mt-2 bg-green-500 text-white px-4 py-2 rounded text-sm hover:bg-green-600">
+                                        Periksa
+                                    </button>
+                                    <div id="averageResult" class="mt-2 text-sm"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4">📊 Visualisasi Data</h3>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="space-y-3">
+                                <div class="flex items-center">
+                                    <span class="w-12 text-sm">170:</span>
+                                    <div class="flex-1 bg-gray-200 rounded-full h-6 ml-2">
+                                        <div class="bg-blue-500 h-6 rounded-full" style="width: 97%"></div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="w-12 text-sm">165:</span>
+                                    <div class="flex-1 bg-gray-200 rounded-full h-6 ml-2">
+                                        <div class="bg-blue-500 h-6 rounded-full" style="width: 94%"></div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="w-12 text-sm">175:</span>
+                                    <div class="flex-1 bg-gray-200 rounded-full h-6 ml-2">
+                                        <div class="bg-blue-500 h-6 rounded-full" style="width: 100%"></div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="w-12 text-sm">168:</span>
+                                    <div class="flex-1 bg-gray-200 rounded-full h-6 ml-2">
+                                        <div class="bg-blue-500 h-6 rounded-full" style="width: 96%"></div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="w-12 text-sm">172:</span>
+                                    <div class="flex-1 bg-gray-200 rounded-full h-6 ml-2">
+                                        <div class="bg-blue-500 h-6 rounded-full" style="width: 98%"></div>
+                                    </div>
+                                </div>
+                                <div class="border-t pt-3 mt-4">
+                                    <div class="flex items-center">
+                                        <span class="w-12 text-sm font-bold text-red-600">Rata-rata:</span>
+                                        <div class="flex-1 bg-gray-200 rounded-full h-6 ml-2">
+                                            <div id="averageLine" class="bg-red-500 h-6 rounded-full hidden" style="width: 97%"></div>
+                                        </div>
+                                        <span id="averageValue" class="ml-2 font-bold text-red-600"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 bg-yellow-50 p-6 rounded-lg">
+                    <h4 class="font-semibold text-gray-800 mb-3">💡 Refleksi:</h4>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <p class="text-sm text-gray-700 mb-2">Apa yang kamu temukan?</p>
+                            <textarea id="reflection1" placeholder="Tuliskan penemuanmu..." 
+                                    class="w-full p-3 border rounded-lg h-20 text-sm"></textarea>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-700 mb-2">Mengapa cara ini masuk akal?</p>
+                            <textarea id="reflection2" placeholder="Jelaskan alasanmu..." 
+                                    class="w-full p-3 border rounded-lg h-20 text-sm"></textarea>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-6 text-center">
+                    <button onclick="nextSection(3)" class="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
+                        Lanjut ke Konsep Formal →
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Membangun Konsep -->
+        <section id="section3" class="mb-12 hidden">
+            <div class="bg-white rounded-xl card-shadow p-6 md:p-8">
+                <div class="flex items-center mb-6">
+                    <div class="bg-purple-100 p-3 rounded-full mr-4">
+                        <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800">Membangun Konsep Rata-rata</h2>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4">📚 Definisi yang Kita Temukan</h3>
+                        <div class="bg-blue-50 p-6 rounded-lg">
+                            <div class="text-center mb-4">
+                                <div class="text-3xl font-bold text-blue-600 mb-2">RATA-RATA</div>
+                                <div class="text-sm text-gray-600">adalah</div>
+                            </div>
+                            
+                            <div class="bg-white p-4 rounded-lg shadow-sm mb-4">
+                                <div class="text-center">
+                                    <div class="text-lg font-semibold text-gray-800 mb-2">Jumlah Seluruh Data</div>
+                                    <div class="text-2xl text-gray-400">÷</div>
+                                    <div class="text-lg font-semibold text-gray-800 mt-2">Banyak Data</div>
+                                </div>
+                            </div>
+                            
+                            <div class="text-center">
+                                <div class="bg-gray-100 p-3 rounded-lg inline-block">
+                                    <div class="text-sm text-gray-600">Rumus:</div>
+                                    <div class="text-xl font-bold text-gray-800">x̄ = Σx / n</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4">🎯 Makna Rata-rata</h3>
+                        <div class="space-y-4">
+                            <div class="bg-green-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-green-800 mb-2">✅ Nilai Representatif</h4>
+                                <p class="text-sm text-gray-700">Rata-rata mewakili keseluruhan data dengan satu nilai yang "tengah"</p>
+                            </div>
+                            
+                            <div class="bg-yellow-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-yellow-800 mb-2">⚖️ Titik Keseimbangan</h4>
+                                <p class="text-sm text-gray-700">Jika semua data diganti dengan nilai rata-rata, jumlah totalnya tetap sama</p>
+                            </div>
+                            
+                            <div class="bg-purple-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-purple-800 mb-2">📊 Pembanding</h4>
+                                <p class="text-sm text-gray-700">Memudahkan perbandingan antar kelompok data</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8">
+                    <h3 class="text-lg font-semibold mb-4">🧮 Kalkulator Interaktif</h3>
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Masukkan data (pisahkan dengan koma):</label>
+                                <input type="text" id="dataInput" placeholder="contoh: 170, 165, 175, 168, 172" 
+                                       class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500">
+                                <button onclick="calculateAverage()" class="mt-3 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">
+                                    Hitung Rata-rata
+                                </button>
+                            </div>
+                            
+                            <div id="calculationSteps" class="hidden">
+                                <h4 class="font-semibold mb-3">Langkah Perhitungan:</h4>
+                                <div id="stepsContent" class="space-y-2 text-sm"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-6 text-center">
+                    <button onclick="nextSection(4)" class="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
+                        Saatnya Berlatih! →
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Latihan Konstruktif -->
+        <section id="section4" class="mb-12 hidden">
+            <div class="bg-white rounded-xl card-shadow p-6 md:p-8">
+                <div class="flex items-center mb-6">
+                    <div class="bg-orange-100 p-3 rounded-full mr-4">
+                        <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800">Latihan Konstruktif</h2>
+                </div>
+                
+                <!-- Latihan 1 -->
+                <div class="mb-8">
+                    <h3 class="text-lg font-semibold mb-4">🎮 Latihan 1: Nilai Ulangan Matematika</h3>
+                    <div class="bg-blue-50 p-6 rounded-lg">
+                        <p class="mb-4">Berikut nilai ulangan matematika 8 siswa: <strong>85, 78, 92, 88, 76, 90, 82, 89</strong></p>
+                        
+                        <div class="grid md:grid-cols-3 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium mb-2">1. Jumlah semua nilai:</label>
+                                <input type="number" id="exercise1_sum" class="w-full p-3 border rounded-lg">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">2. Banyak siswa:</label>
+                                <input type="number" id="exercise1_count" class="w-full p-3 border rounded-lg">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">3. Rata-rata nilai:</label>
+                                <input type="number" step="0.1" id="exercise1_avg" class="w-full p-3 border rounded-lg">
+                            </div>
+                        </div>
+                        
+                        <button onclick="checkExercise1()" class="mt-4 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">
+                            Periksa Jawaban
+                        </button>
+                        <div id="exercise1_result" class="mt-3"></div>
+                    </div>
+                </div>
+                
+                <!-- Latihan 2 -->
+                <div class="mb-8">
+                    <h3 class="text-lg font-semibold mb-4">🏃‍♀️ Latihan 2: Waktu Lari</h3>
+                    <div class="bg-green-50 p-6 rounded-lg">
+                        <p class="mb-4">Waktu lari 100m (dalam detik): <strong>12.5, 13.2, 11.8, 12.9, 13.5, 12.1</strong></p>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <p class="text-sm font-medium mb-2">Hitung rata-rata waktu lari dan jelaskan artinya:</p>
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <input type="number" step="0.1" id="exercise2_avg" placeholder="Rata-rata (detik)" 
+                                           class="w-full p-3 border rounded-lg">
+                                    <textarea id="exercise2_meaning" placeholder="Jelaskan artinya..." 
+                                            class="w-full p-3 border rounded-lg h-12"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button onclick="checkExercise2()" class="mt-4 bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">
+                            Periksa Jawaban
+                        </button>
+                        <div id="exercise2_result" class="mt-3"></div>
+                    </div>
+                </div>
+                
+                <!-- Latihan 3 -->
+                <div class="mb-8">
+                    <h3 class="text-lg font-semibold mb-4">🧠 Latihan 3: Pemecahan Masalah</h3>
+                    <div class="bg-purple-50 p-6 rounded-lg">
+                        <p class="mb-4">
+                            <strong>Situasi:</strong> Rata-rata tinggi badan 4 siswa adalah 165 cm. 
+                            Jika ditambah satu siswa lagi dengan tinggi 170 cm, berapa rata-rata tinggi badan kelima siswa tersebut?
+                        </p>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Langkah 1: Jumlah tinggi 4 siswa pertama</label>
+                                <input type="number" id="exercise3_step1" placeholder="165 × 4 = ?" 
+                                       class="w-full p-3 border rounded-lg">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Langkah 2: Jumlah tinggi 5 siswa</label>
+                                <input type="number" id="exercise3_step2" placeholder="Jumlah sebelumnya + 170 = ?" 
+                                       class="w-full p-3 border rounded-lg">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Langkah 3: Rata-rata baru</label>
+                                <input type="number" step="0.1" id="exercise3_step3" placeholder="Jumlah ÷ 5 = ?" 
+                                       class="w-full p-3 border rounded-lg">
+                            </div>
+                        </div>
+                        
+                        <button onclick="checkExercise3()" class="mt-4 bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700">
+                            Periksa Jawaban
+                        </button>
+                        <div id="exercise3_result" class="mt-3"></div>
+                    </div>
+                </div>
+                
+                <div class="mt-6 text-center">
+                    <button onclick="nextSection(5)" class="bg-orange-600 hover:bg-orange-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
+                        Lihat Kesimpulan →
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Kesimpulan -->
+        <section id="section5" class="mb-12 hidden">
+            <div class="bg-white rounded-xl card-shadow p-6 md:p-8">
+                <div class="flex items-center mb-6">
+                    <div class="bg-red-100 p-3 rounded-full mr-4">
+                        <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800">Kesimpulan Pembelajaran</h2>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4">🎯 Apa yang Telah Kita Pelajari</h3>
+                        <div class="space-y-4">
+                            <div class="bg-blue-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-blue-800 mb-2">1. Konsep Rata-rata</h4>
+                                <p class="text-sm text-gray-700">Rata-rata adalah nilai yang mewakili keseluruhan data, diperoleh dengan membagi jumlah semua data dengan banyak data.</p>
+                            </div>
+                            
+                            <div class="bg-green-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-green-800 mb-2">2. Rumus Matematika</h4>
+                                <p class="text-sm text-gray-700">x̄ = Σx / n, dimana x̄ adalah rata-rata, Σx adalah jumlah data, dan n adalah banyak data.</p>
+                            </div>
+                            
+                            <div class="bg-purple-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-purple-800 mb-2">3. Aplikasi Praktis</h4>
+                                <p class="text-sm text-gray-700">Rata-rata berguna untuk membandingkan kelompok data dan membuat keputusan berdasarkan data.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4">💡 Refleksi Akhir</h3>
+                        <div class="bg-yellow-50 p-6 rounded-lg">
+                            <h4 class="font-semibold text-yellow-800 mb-3">Renungkan:</h4>
+                            <ul class="space-y-2 text-sm text-gray-700">
+                                <li>• Bagaimana pemahaman kamu tentang rata-rata berkembang dari awal hingga akhir pembelajaran?</li>
+                                <li>• Situasi apa saja dalam kehidupan sehari-hari yang menggunakan konsep rata-rata?</li>
+                                <li>• Mengapa penting memahami makna di balik angka rata-rata?</li>
+                            </ul>
+                            
+                            <textarea id="finalReflection" placeholder="Tuliskan refleksi akhirmu..." 
+                                    class="w-full p-3 border rounded-lg mt-4 h-24 text-sm"></textarea>
+                        </div>
+                        
+                        <div class="mt-6 bg-gradient-to-r from-blue-50 to-purple-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-gray-800 mb-2">🌟 Selamat!</h4>
+                            <p class="text-sm text-gray-700">Kamu telah berhasil membangun pemahaman tentang rata-rata data tunggal melalui eksplorasi dan penemuan sendiri. Terus berlatih dan terapkan dalam kehidupan sehari-hari!</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 text-center">
+                    <button onclick="resetLearning()" class="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-all">
+                        🔄 Mulai Ulang Pembelajaran
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6 mt-12">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="text-gray-300">© 2025 Mathnology</p>
+        </div>
+    </footer>
+
+    <script>
+        let currentSection = 1;
+        const totalSections = 5;
+
+        function updateProgress() {
+            const progress = (currentSection / totalSections) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+            document.getElementById('progressText').textContent = Math.round(progress) + '%';
+        }
+
+        function nextSection(sectionNumber) {
+            // Hide current section
+            document.getElementById(`section${currentSection}`).classList.add('hidden');
+            
+            // Show next section
+            document.getElementById(`section${sectionNumber}`).classList.remove('hidden');
+            document.getElementById(`section${sectionNumber}`).classList.add('fade-in');
+            
+            currentSection = sectionNumber;
+            updateProgress();
+            
+            // Scroll to top of new section
+            document.getElementById(`section${sectionNumber}`).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function checkSum() {
+            const input = document.getElementById('sum1').value;
+            const correct = 850;
+            const result = document.getElementById('sumResult');
+            
+            if (parseInt(input) === correct) {
+                result.innerHTML = '<span class="text-green-600 font-semibold">✅ Benar! 170 + 165 + 175 + 168 + 172 = 850</span>';
+            } else {
+                result.innerHTML = '<span class="text-red-600">❌ Coba lagi. Jumlahkan: 170 + 165 + 175 + 168 + 172</span>';
+            }
+        }
+
+        function checkAverage() {
+            const input = document.getElementById('average1').value;
+            const correct = 170;
+            const result = document.getElementById('averageResult');
+            
+            if (parseFloat(input) === correct) {
+                result.innerHTML = '<span class="text-green-600 font-semibold">✅ Benar! 850 ÷ 5 = 170 cm</span>';
+                document.getElementById('averageLine').classList.remove('hidden');
+                document.getElementById('averageValue').textContent = '170';
+            } else {
+                result.innerHTML = '<span class="text-red-600">❌ Coba lagi. Bagi 850 dengan 5</span>';
+            }
+        }
+
+        function calculateAverage() {
+            const input = document.getElementById('dataInput').value;
+            const data = input.split(',').map(x => parseFloat(x.trim())).filter(x => !isNaN(x));
+            
+            if (data.length === 0) {
+                alert('Masukkan data yang valid!');
+                return;
+            }
+            
+            const sum = data.reduce((a, b) => a + b, 0);
+            const average = sum / data.length;
+            
+            const stepsDiv = document.getElementById('calculationSteps');
+            const stepsContent = document.getElementById('stepsContent');
+            
+            stepsContent.innerHTML = `
+                <div class="bg-white p-3 rounded border-l-4 border-blue-500">
+                    <strong>Data:</strong> ${data.join(', ')}
+                </div>
+                <div class="bg-white p-3 rounded border-l-4 border-green-500">
+                    <strong>Jumlah:</strong> ${data.join(' + ')} = ${sum}
+                </div>
+                <div class="bg-white p-3 rounded border-l-4 border-purple-500">
+                    <strong>Banyak data:</strong> ${data.length}
+                </div>
+                <div class="bg-white p-3 rounded border-l-4 border-red-500">
+                    <strong>Rata-rata:</strong> ${sum} ÷ ${data.length} = ${average.toFixed(2)}
+                </div>
+            `;
+            
+            stepsDiv.classList.remove('hidden');
+        }
+
+        function checkExercise1() {
+            const sum = parseInt(document.getElementById('exercise1_sum').value);
+            const count = parseInt(document.getElementById('exercise1_count').value);
+            const avg = parseFloat(document.getElementById('exercise1_avg').value);
+            
+            const correctSum = 680;
+            const correctCount = 8;
+            const correctAvg = 85;
+            
+            let result = '';
+            let allCorrect = true;
+            
+            if (sum === correctSum) {
+                result += '<span class="text-green-600">✅ Jumlah benar (680)</span><br>';
+            } else {
+                result += '<span class="text-red-600">❌ Jumlah salah. Coba: 85+78+92+88+76+90+82+89</span><br>';
+                allCorrect = false;
+            }
+            
+            if (count === correctCount) {
+                result += '<span class="text-green-600">✅ Banyak siswa benar (8)</span><br>';
+            } else {
+                result += '<span class="text-red-600">❌ Banyak siswa salah. Hitung lagi!</span><br>';
+                allCorrect = false;
+            }
+            
+            if (avg === correctAvg) {
+                result += '<span class="text-green-600">✅ Rata-rata benar (85)</span>';
+            } else {
+                result += '<span class="text-red-600">❌ Rata-rata salah. 680 ÷ 8 = ?</span>';
+                allCorrect = false;
+            }
+            
+            if (allCorrect) {
+                result += '<div class="mt-3 p-3 bg-green-100 rounded-lg"><strong>Excellent!</strong> Rata-rata nilai kelas adalah 85. Ini berarti secara keseluruhan, performa kelas cukup baik.</div>';
+            }
+            
+            document.getElementById('exercise1_result').innerHTML = result;
+        }
+
+        function checkExercise2() {
+            const avg = parseFloat(document.getElementById('exercise2_avg').value);
+            const meaning = document.getElementById('exercise2_meaning').value.trim();
+            
+            const correctAvg = 12.67;
+            let result = '';
+            
+            if (Math.abs(avg - correctAvg) < 0.1) {
+                result += '<span class="text-green-600">✅ Rata-rata benar (≈12.67 detik)</span><br>';
+                
+                if (meaning.length > 10) {
+                    result += '<span class="text-green-600">✅ Penjelasan diberikan</span>';
+                    result += '<div class="mt-3 p-3 bg-green-100 rounded-lg"><strong>Bagus!</strong> Rata-rata waktu lari adalah 12.67 detik, yang menunjukkan performa rata-rata atlet dalam lari 100m.</div>';
+                } else {
+                    result += '<span class="text-yellow-600">⚠️ Coba jelaskan lebih detail apa arti rata-rata ini</span>';
+                }
+            } else {
+                result += '<span class="text-red-600">❌ Rata-rata salah. Hitung: (12.5+13.2+11.8+12.9+13.5+12.1) ÷ 6</span>';
+            }
+            
+            document.getElementById('exercise2_result').innerHTML = result;
+        }
+
+        function checkExercise3() {
+            const step1 = parseInt(document.getElementById('exercise3_step1').value);
+            const step2 = parseInt(document.getElementById('exercise3_step2').value);
+            const step3 = parseFloat(document.getElementById('exercise3_step3').value);
+            
+            let result = '';
+            let allCorrect = true;
+            
+            if (step1 === 660) {
+                result += '<span class="text-green-600">✅ Langkah 1 benar (660 cm)</span><br>';
+            } else {
+                result += '<span class="text-red-600">❌ Langkah 1 salah. 165 × 4 = ?</span><br>';
+                allCorrect = false;
+            }
+            
+            if (step2 === 830) {
+                result += '<span class="text-green-600">✅ Langkah 2 benar (830 cm)</span><br>';
+            } else {
+                result += '<span class="text-red-600">❌ Langkah 2 salah. 660 + 170 = ?</span><br>';
+                allCorrect = false;
+            }
+            
+            if (step3 === 166) {
+                result += '<span class="text-green-600">✅ Langkah 3 benar (166 cm)</span>';
+            } else {
+                result += '<span class="text-red-600">❌ Langkah 3 salah. 830 ÷ 5 = ?</span>';
+                allCorrect = false;
+            }
+            
+            if (allCorrect) {
+                result += '<div class="mt-3 p-3 bg-green-100 rounded-lg"><strong>Perfect!</strong> Rata-rata tinggi badan menjadi 166 cm setelah ditambah siswa baru. Perhatikan bagaimana satu data baru dapat mengubah rata-rata keseluruhan.</div>';
+            }
+            
+            document.getElementById('exercise3_result').innerHTML = result;
+        }
+
+        function resetLearning() {
+            // Reset to first section
+            for (let i = 1; i <= totalSections; i++) {
+                document.getElementById(`section${i}`).classList.add('hidden');
+            }
+            document.getElementById('section1').classList.remove('hidden');
+            
+            // Reset all inputs
+            const inputs = document.querySelectorAll('input, textarea');
+            inputs.forEach(input => input.value = '');
+            
+            // Reset results
+            const results = document.querySelectorAll('[id$="_result"], [id$="Result"]');
+            results.forEach(result => result.innerHTML = '');
+            
+            // Reset progress
+            currentSection = 1;
+            updateProgress();
+            
+            // Hide calculation steps
+            document.getElementById('calculationSteps').classList.add('hidden');
+            document.getElementById('averageLine').classList.add('hidden');
+            document.getElementById('averageValue').textContent = '';
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Initialize
+        updateProgress();
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'972e8192966ef8da',t:'MTc1NTgyNTE5MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
